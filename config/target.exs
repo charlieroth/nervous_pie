@@ -26,7 +26,6 @@ config :nerves,
 # Authorize the device to receive firmware using your public key.
 # See https://hexdocs.pm/nerves_firmware_ssh/readme.html for more information
 # on configuring nerves_firmware_ssh.
-
 keys =
   [
     Path.join([System.user_home!(), ".ssh", "id_rsa.pub"]),
@@ -57,7 +56,18 @@ config :vintage_net,
        type: VintageNetEthernet,
        ipv4: %{method: :dhcp}
      }},
-    {"wlan0", %{type: VintageNetWiFi}}
+    {
+      "wlan0", 
+      %{
+        type: VintageNetWiFi,
+        vintage_net_wifi: %{
+          networks: [
+            %{key_mgmt: :wpa_psk, ssid: "ARRIS-8522-5G", psk: "BSY89A600339"}
+          ]
+        },
+        ipv4: %{method: :dhcp}
+      }
+    }
   ]
 
 config :mdns_lite,
