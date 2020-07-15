@@ -31,7 +31,7 @@ defmodule NervousPie.MixProject do
   def application do
     [
       mod: {NervousPie.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :inets]
     ]
   end
 
@@ -57,6 +57,10 @@ defmodule NervousPie.MixProject do
       {:nerves_system_rpi4, "~> 1.12", runtime: false, targets: :rpi4},
       {:nerves_system_bbb, "~> 2.7", runtime: false, targets: :bbb},
       {:nerves_system_x86_64, "~> 1.12", runtime: false, targets: :x86_64},
+
+      # Other deps
+      {:mint, "~> 1.1"},
+      {:castore, "~> 0.1.6"}
     ]
   end
 
